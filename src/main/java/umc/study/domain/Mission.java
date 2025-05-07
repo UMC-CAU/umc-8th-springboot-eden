@@ -37,6 +37,7 @@ public class Mission extends BaseEntity {
     @Column(nullable = false)
     private double rewardRatio;
 
+    @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(10)", nullable = false)
     private MissionStatus missionStatus;
 
