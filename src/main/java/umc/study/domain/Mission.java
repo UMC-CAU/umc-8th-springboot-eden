@@ -26,6 +26,9 @@ public class Mission extends BaseEntity {
     @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurant restaurant;
 
+    @Column(columnDefinition = "TEXT")
+    private String info;
+
     private LocalDateTime deadLine;
 
     @Column(nullable = false)
@@ -34,6 +37,7 @@ public class Mission extends BaseEntity {
     @Column(nullable = false)
     private double rewardRatio;
 
+    @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(10)", nullable = false)
     private MissionStatus missionStatus;
 
