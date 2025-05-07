@@ -26,6 +26,9 @@ public class Mission extends BaseEntity {
     @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurant restaurant;
 
+    @Column(columnDefinition = "TEXT")
+    private String info;
+
     private LocalDateTime deadLine;
 
     @Column(nullable = false)
