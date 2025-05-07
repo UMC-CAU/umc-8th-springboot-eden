@@ -51,4 +51,25 @@ public class MissionRepositoryImpl implements MissionRepositoryCustom {
                 .fetch();
 
     }
+
+    @Override
+    public List<Tuple> getMyCompletedMissions(Long userId, String cursorValue) {
+        StringTemplate cursorExpr = Expressions.stringTemplate(
+                "CONCAT({0}, LPAD({1}, 10, '0'))", um.updatedAt, m.id
+        );
+
+        return jpaQueryFactory
+                .select(m.id, m.successAmount, m.rewardRatio, um.missionStatus, r.name, cursorExpr)
+                .from(m)
+                .join(m.restaurant, r)
+                .join(um).on(um.mission.eq(m))
+                .where(
+                        um.user.id.eq(userId),
+                        um.missionStatus.in(MissionStatus.SUCCEEDED, MissionStatus.FAILED),
+                        cursorExpr.lt(cursorValue)
+                )
+                .orderBy(um.updatedAt.desc(), m.id.desc())
+                .limit(5)
+                .fetch();
+    }
 }
