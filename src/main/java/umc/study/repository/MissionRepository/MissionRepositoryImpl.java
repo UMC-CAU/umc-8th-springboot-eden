@@ -72,4 +72,28 @@ public class MissionRepositoryImpl implements MissionRepositoryCustom {
                 .limit(5)
                 .fetch();
     }
+
+    @Override
+    public List<Tuple> getInfoForHome(Long userId, String region, String cursorValue) {
+        StringTemplate cursorExpr = Expressions.stringTemplate(
+                "CONCAT({0}, LPAD({1}, 10, '0'))", m.deadLine, m.id
+        );
+
+        return jpaQueryFactory
+                .select(m.id, m.deadLine, m.successAmount, m.rewardRatio, r.name, r.category, cursorExpr)
+                .from(m)
+                .leftJoin(um).on(
+                        um.mission.eq(m),
+                        um.user.id.eq(1L)
+                )
+                .join(m.restaurant, r)
+                .where(
+                        (um.user.id.isNull().or(um.missionStatus.in(MissionStatus.SUCCEEDED, MissionStatus.FAILED))),
+                        r.region.eq(region),
+                        cursorExpr.gt(cursorValue)
+                )
+                .orderBy(m.deadLine.asc(), m.id.asc())
+                .limit(5)
+                .fetch();
+    }
 }
