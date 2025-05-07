@@ -5,6 +5,7 @@ import lombok.*;
 import umc.study.domain.Mission;
 import umc.study.domain.User;
 import umc.study.domain.common.BaseEntity;
+import umc.study.domain.enums.MissionStatus;
 import umc.study.domain.enums.ProgressStatus;
 
 @Entity
@@ -28,5 +29,5 @@ public class UserMission extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(10)")
-    private ProgressStatus progressStatus;
+    private MissionStatus missionStatus;
 }
