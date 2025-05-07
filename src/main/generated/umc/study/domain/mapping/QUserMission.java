@@ -34,7 +34,7 @@ public class QUserMission extends EntityPathBase<UserMission> {
 
     public final umc.study.domain.QMission mission;
 
-    public final EnumPath<umc.study.domain.enums.ProgressStatus> progressStatus = createEnum("progressStatus", umc.study.domain.enums.ProgressStatus.class);
+    public final EnumPath<umc.study.domain.enums.MissionStatus> missionStatus = createEnum("missionStatus", umc.study.domain.enums.MissionStatus.class);
 
     //inherited
     public final EnumPath<umc.study.domain.enums.Status> status = _super.status;
