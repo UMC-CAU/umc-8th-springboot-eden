@@ -12,7 +12,7 @@ import umc.study.web.dto.TempResponse;
 
 @RestController     // 객체나 문자열을 바로 Response body로 반환하게 해준다
 @RequestMapping("/temp")    // 이 컨트롤러 내의 모든 URL 앞에 공통 경로 "/temp"를 붙이겠다
-@RequiredArgsConstructor
+@RequiredArgsConstructor        // final이나 @NonNull이 붙은 필드를 자동으로 생성자 매개변수로 만들어준다
 public class TempRestController {
 
     private final TempQueryService tempQueryService;
