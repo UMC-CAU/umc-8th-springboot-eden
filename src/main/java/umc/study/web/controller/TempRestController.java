@@ -8,12 +8,12 @@ import umc.study.apiPayload.ApiResponse;
 import umc.study.converter.TempConverter;
 import umc.study.web.dto.TempResponse;
 
-@RestController
-@RequestMapping("/temp")
+@RestController     // 객체나 문자열을 바로 Response body로 반환하게 해준다
+@RequestMapping("/temp")    // 이 컨트롤러 내의 모든 URL 앞에 공통 경로 "/temp"를 붙이겠다
 @RequiredArgsConstructor
 public class TempRestController {
 
-    @GetMapping("/test")
+    @GetMapping("/test")    // GET 요청을 "/test" 경로로 받을 때 실행되는 메소드임을 표현
     public ApiResponse<TempResponse.TempTestDTO> testAPI(){
 
         return ApiResponse.onSuccess(TempConverter.toTempTestDTO());
