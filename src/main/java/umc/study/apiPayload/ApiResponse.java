@@ -22,10 +22,13 @@ public class ApiResponse<T> {
 
 
     // 성공한 경우 응답 생성
+
+    // 기본 성공 응답
     public static <T> ApiResponse<T> onSuccess(T result){
         return new ApiResponse<>(true, SuccessStatus._OK.getCode() , SuccessStatus._OK.getMessage(), result);
     }
 
+    // 응답 다양화
     public static <T> ApiResponse<T> of(BaseCode code, T result){
             return new ApiResponse<>(true, code.getReasonHttpStatus().getCode() , code.getReasonHttpStatus().getMessage(), result);
     }
