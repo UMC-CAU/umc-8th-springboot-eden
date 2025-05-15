@@ -25,7 +25,7 @@ public class User extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 100, nullable = false)
+    @Column(length = 100, nullable = true)  // 소셜 로그인 없이 진행해서 잠시 nullable로 변경
     private String email;
 
     @Enumerated(EnumType.STRING)
@@ -46,6 +46,9 @@ public class User extends BaseEntity {
 
     @Column(length = 200)
     private String address;
+
+    @Column(length = 200)
+    private String specAddress;
 
     @Column(columnDefinition = "TEXT")
     private String imgUrl;
