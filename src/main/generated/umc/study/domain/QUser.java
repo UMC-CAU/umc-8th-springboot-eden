@@ -66,6 +66,8 @@ public class QUser extends EntityPathBase<User> {
 
     public final EnumPath<umc.study.domain.enums.SocialType> socialType = createEnum("socialType", umc.study.domain.enums.SocialType.class);
 
+    public final StringPath specAddress = createString("specAddress");
+
     //inherited
     public final EnumPath<umc.study.domain.enums.Status> status = _super.status;
 
