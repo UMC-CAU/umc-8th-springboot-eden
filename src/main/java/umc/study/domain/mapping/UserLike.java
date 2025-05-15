@@ -21,8 +21,16 @@ public class UserLike extends BaseEntity {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @Setter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "like_id", nullable = false)
     private FoodLike foodLike;
+
+    public void setUser(User user) {
+        if(this.user != null)
+            user.getUserLikeList().remove(this);
+        this.user = user;
+        user.getUserLikeList().add(this);
+    }
 
 }
