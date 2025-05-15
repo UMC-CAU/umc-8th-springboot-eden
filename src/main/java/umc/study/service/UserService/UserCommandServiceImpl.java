@@ -1,12 +1,15 @@
 package umc.study.service.UserService;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import umc.study.apiPayload.code.status.ErrorStatus;
 import umc.study.apiPayload.exception.handler.FoodLikeHandler;
 import umc.study.converter.UserConverter;
+import umc.study.converter.UserLikeConverter;
 import umc.study.domain.FoodLike;
 import umc.study.domain.User;
+import umc.study.domain.mapping.UserLike;
 import umc.study.repository.FoodLikeRepository.FoodLikeRepository;
 import umc.study.repository.UserRepository.UserRepository;
 import umc.study.web.dto.UserRequestDTO;
@@ -23,6 +26,7 @@ public class UserCommandServiceImpl implements UserCommandService {
     private final FoodLikeRepository foodLikeRepository;
 
     @Override
+    @Transactional
     public User joinUser(UserRequestDTO.JoinDto request){
 
         User newUser = UserConverter.toUser(request);
@@ -31,20 +35,12 @@ public class UserCommandServiceImpl implements UserCommandService {
             return foodLikeRepository.findById(category).orElseThrow(() -> new FoodLikeHandler(ErrorStatus.FOOD_CATEGORY_NOT_FOUND));
         }).collect(Collectors.toList());
 
-        return null;
+        List<UserLike> userLikeList = UserLikeConverter.toUserLikeList(foodLikeList);
 
-        /*
-        * Member newMember = MemberConverter.toMember(request);
-        List<FoodCategory> foodCategoryList = request.getPreferCategory().stream()
-                .map(category -> {
-                    return foodCategoryRepository.findById(category).orElseThrow(() -> new FoodCategoryHandler(ErrorStatus.FOOD_CATEGORY_NOT_FOUND));
-                }).collect(Collectors.toList());
+        userLikeList.forEach(userLike -> {userLike.setUser(newUser);});
 
-        List<MemberPrefer> memberPreferList = MemberPreferConverter.toMemberPreferList(foodCategoryList);
+        return userRepository.save(newUser);
 
-        memberPreferList.forEach(memberPrefer -> {memberPrefer.setMember(newMember);});
 
-        return memberRepository.save(newMember);
-        * */
     }
 }
