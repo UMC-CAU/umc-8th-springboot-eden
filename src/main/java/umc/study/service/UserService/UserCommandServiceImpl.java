@@ -2,6 +2,7 @@ package umc.study.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import umc.study.converter.UserConverter;
 import umc.study.domain.User;
 import umc.study.repository.UserRepository.UserRepository;
 import umc.study.web.dto.UserRequestDTO;
@@ -14,6 +15,8 @@ public class UserCommandServiceImpl implements UserCommandService {
 
     @Override
     public User joinUser(UserRequestDTO.JoinDto request){
+
+        User newUser = UserConverter.toUser(request);
 
         return null;
     }
