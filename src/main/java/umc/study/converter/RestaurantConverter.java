@@ -9,9 +9,12 @@ public class RestaurantConverter {
     // 식당 객체 -> DTO
     public static RestaurantResponseDTO.addToRegionResultDTO toRestaurantDTO(Restaurant restaurant){
         return RestaurantResponseDTO.addToRegionResultDTO.builder()
+                .restaurantId(restaurant.getId())
                 .name(restaurant.getName())
                 .address(restaurant.getAddress())
                 .regionId(restaurant.getRegion().getId())
+                .createdAt(restaurant.getCreatedAt())
+                .updatedAt(restaurant.getUpdatedAt())
                 .build();
     }
 

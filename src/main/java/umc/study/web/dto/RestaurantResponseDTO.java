@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 public class RestaurantResponseDTO {
 
     @Builder
@@ -12,10 +14,17 @@ public class RestaurantResponseDTO {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class addToRegionResultDTO{
+
+        Long restaurantId;
+
         String name;
 
         String address;
 
         Long regionId;
+
+        LocalDateTime createdAt;
+
+        LocalDateTime updatedAt;
     }
 }
