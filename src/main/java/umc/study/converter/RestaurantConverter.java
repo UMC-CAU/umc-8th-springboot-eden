@@ -1,15 +1,15 @@
 package umc.study.converter;
 
 import umc.study.domain.Restaurant;
-import umc.study.web.dto.RegionRequestDTO;
+import umc.study.web.dto.RestaurantResponseDTO;
 
 public class RestaurantConverter {
 
-    public static Restaurant toRestaurant(RegionRequestDTO.addRestaurantDTO request){
-        return Restaurant.builder()
-                .name(request.getName())
-                .category(request.getCategory())
-                .address(request.getAddress())
+    public static RestaurantResponseDTO.addToRegionResultDTO toRestaurant(Restaurant restaurant){
+        return RestaurantResponseDTO.addToRegionResultDTO.builder()
+                .name(restaurant.getName())
+                .address(restaurant.getAddress())
+                .regionId(restaurant.getRegion().getId())
                 .build();
     }
 }
