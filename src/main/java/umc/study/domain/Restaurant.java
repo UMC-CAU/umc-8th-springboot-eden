@@ -40,7 +40,7 @@ public class Restaurant extends BaseEntity {
     private List<Mission> missionList = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "region_id", nullable = false)
+    @JoinColumn(name = "region_id")
     private Region region;
 
     @Override

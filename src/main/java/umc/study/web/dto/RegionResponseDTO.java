@@ -15,5 +15,7 @@ public class RegionResponseDTO {
         String name;
 
         String address;
+
+        Long regionId;
     }
 }
