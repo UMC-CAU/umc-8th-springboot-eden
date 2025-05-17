@@ -39,6 +39,7 @@ public class Restaurant extends BaseEntity {
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
     private List<Mission> missionList = new ArrayList<>();
 
+    @Setter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "region_id")
     private Region region;
@@ -53,4 +54,5 @@ public class Restaurant extends BaseEntity {
                 ", region=" + (region != null ? region.getName() : "N/A") + // region의 이름 출력
                 '}';
     }
+
 }
