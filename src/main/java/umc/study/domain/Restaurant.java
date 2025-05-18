@@ -55,4 +55,10 @@ public class Restaurant extends BaseEntity {
                 '}';
     }
 
+    // 연관관계 한 번에 처리
+    public void addMission(Mission mission) {
+        this.missionList.add(mission);
+        mission.setRestaurant(this);
+    }
+
 }
