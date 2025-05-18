@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import umc.study.domain.enums.MissionStatus;
 import umc.study.domain.enums.ProgressStatus;
 
 import java.time.LocalDateTime;
@@ -20,7 +21,7 @@ public class UserMissionResponseDTO {
 
         String restaurantName;
 
-        ProgressStatus progressStatus;
+        MissionStatus missionStatus;
 
         LocalDateTime createdAt;
 
