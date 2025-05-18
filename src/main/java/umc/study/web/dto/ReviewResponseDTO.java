@@ -13,7 +13,7 @@ public class ReviewResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class reviewRestaurantResultDTO {
+    public static class ReviewRestaurantResultDTO {
 
         Long reviewId;
 

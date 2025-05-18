@@ -5,7 +5,7 @@ import lombok.Getter;
 public class RestaurantRequestDTO {
 
     @Getter
-    public static class addToRegionDTO {
+    public static class AddToRegionDTO {
 
         String name;
 

@@ -18,7 +18,7 @@ public class RestaurantCommandServiceImpl implements RestaurantCommandService {
     private final RegionRepository regionRepository;
 
     @Override
-    public Restaurant addToRegion(Long regionId, RestaurantRequestDTO.addToRegionDTO request) {
+    public Restaurant addToRegion(Long regionId, RestaurantRequestDTO.AddToRegionDTO request) {
 
         // request 사용해서 새로운 restaurant 객체 생성
         Restaurant newRestaurant = RestaurantConverter.toRestaurantEntity(request);

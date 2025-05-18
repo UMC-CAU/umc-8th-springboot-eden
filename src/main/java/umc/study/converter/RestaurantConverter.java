@@ -7,8 +7,8 @@ import umc.study.web.dto.RestaurantResponseDTO;
 public class RestaurantConverter {
 
     // 식당 객체 -> DTO
-    public static RestaurantResponseDTO.addToRegionResultDTO toRestaurantDTO(Restaurant restaurant){
-        return RestaurantResponseDTO.addToRegionResultDTO.builder()
+    public static RestaurantResponseDTO.AddToRegionResultDTO toRestaurantDTO(Restaurant restaurant){
+        return RestaurantResponseDTO.AddToRegionResultDTO.builder()
                 .restaurantId(restaurant.getId())
                 .name(restaurant.getName())
                 .address(restaurant.getAddress())
@@ -19,7 +19,7 @@ public class RestaurantConverter {
     }
 
     // DTO -> 식당 객체
-    public static Restaurant toRestaurantEntity(RestaurantRequestDTO.addToRegionDTO request){
+    public static Restaurant toRestaurantEntity(RestaurantRequestDTO.AddToRegionDTO request){
         return Restaurant.builder()
                 .name(request.getName())
                 .category(request.getCategory())

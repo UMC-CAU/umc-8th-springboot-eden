@@ -13,7 +13,7 @@ public class RestaurantResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class addToRegionResultDTO{
+    public static class AddToRegionResultDTO {
 
         Long restaurantId;
 

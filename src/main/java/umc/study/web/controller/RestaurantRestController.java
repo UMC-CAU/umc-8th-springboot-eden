@@ -18,9 +18,9 @@ public class RestaurantRestController {
     private final RestaurantCommandService restaurantCommandService;
 
     @PostMapping("/{regionId}/region")
-    public ApiResponse<RestaurantResponseDTO.addToRegionResultDTO> addToRegion
+    public ApiResponse<RestaurantResponseDTO.AddToRegionResultDTO> addToRegion
             (@PathVariable Long regionId,
-             @RequestBody @Valid RestaurantRequestDTO.addToRegionDTO request){
+             @RequestBody @Valid RestaurantRequestDTO.AddToRegionDTO request){
 
         Restaurant restaurant = restaurantCommandService.addToRegion(regionId, request);
 

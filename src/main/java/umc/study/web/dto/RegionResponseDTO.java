@@ -11,7 +11,7 @@ public class RegionResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class addRestaurantResultDTO{
+    public static class AddRestaurantResultDTO {
         String name;
 
         String address;
