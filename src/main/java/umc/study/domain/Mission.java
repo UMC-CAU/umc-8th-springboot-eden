@@ -40,8 +40,8 @@ public class Mission extends BaseEntity {
     private BigDecimal rewardRatio;
 
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "VARCHAR(10)", nullable = false)
-    private MissionStatus missionStatus;
+    @Column(columnDefinition = "VARCHAR(10) DEFAULT 'ONGOING'")
+    private MissionStatus missionStatus = MissionStatus.ONGOING;
 
     @Column(length = 15)
     private String verifyCode;
