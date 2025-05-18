@@ -7,6 +7,7 @@ import umc.study.domain.enums.MissionStatus;
 import umc.study.domain.mapping.UserLike;
 import umc.study.domain.mapping.UserMission;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,11 +32,11 @@ public class Mission extends BaseEntity {
 
     private LocalDateTime deadLine;
 
-    @Column(nullable = false)
-    private Integer successAmount;
+    @Column(precision = 10, scale = 1, nullable = false)
+    private BigDecimal successAmount;
 
-    @Column(nullable = false)
-    private double rewardRatio;
+    @Column(precision = 5, scale = 4, nullable = false)
+    private BigDecimal rewardRatio;
 
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(10)", nullable = false)
