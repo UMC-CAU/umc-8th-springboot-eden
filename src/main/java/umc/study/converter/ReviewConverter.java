@@ -5,7 +5,7 @@ import umc.study.web.dto.ReviewRequestDTO;
 
 public class ReviewConverter {
 
-    public static Review toReviewEntity(ReviewRequestDTO.reviewRestaurantDTO request){
+    public static Review toReviewEntity(ReviewRequestDTO.ReviewRestaurantDTO request){
         return Review.builder()
                 .rating(request.getRating())
                 .content(request.getContent())

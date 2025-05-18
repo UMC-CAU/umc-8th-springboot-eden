@@ -5,5 +5,5 @@ import umc.study.web.dto.RestaurantRequestDTO;
 
 public interface RestaurantCommandService {
 
-    Restaurant addToRegion(Long regionId, RestaurantRequestDTO.addToRegionDTO request);
+    Restaurant addToRegion(Long regionId, RestaurantRequestDTO.AddToRegionDTO request);
 }
