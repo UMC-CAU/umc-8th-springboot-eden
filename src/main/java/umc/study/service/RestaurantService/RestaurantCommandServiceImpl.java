@@ -26,7 +26,7 @@ public class RestaurantCommandServiceImpl implements RestaurantCommandService {
         // path variable로 전달받은 region id로 region 객체 탐색
         Region region = regionRepository.findById(regionId).orElse(null);   // Todo: 예외 처리 필요
 
-        newRestaurant.setRegion(region);
+        region.addRestaurant(newRestaurant);
 
         return restaurantRepository.save(newRestaurant);
     }
