@@ -46,7 +46,7 @@ public class QRestaurant extends EntityPathBase<Restaurant> {
 
     public final NumberPath<Double> rating = createNumber("rating", Double.class);
 
-    public final StringPath region = createString("region");
+    public final QRegion region;
 
     public final ListPath<Review, QReview> reviewList = this.<Review, QReview>createList("reviewList", Review.class, QReview.class, PathInits.DIRECT2);
 
@@ -75,6 +75,7 @@ public class QRestaurant extends EntityPathBase<Restaurant> {
     public QRestaurant(Class<? extends Restaurant> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.ownerInfo = inits.isInitialized("ownerInfo") ? new QOwnerInfo(forProperty("ownerInfo"), inits.get("ownerInfo")) : null;
+        this.region = inits.isInitialized("region") ? new QRegion(forProperty("region")) : null;
     }
 
 }

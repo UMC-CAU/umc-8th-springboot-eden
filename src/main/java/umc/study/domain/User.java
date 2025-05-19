@@ -94,4 +94,9 @@ public class User extends BaseEntity {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<ReviewReply> reviewReplyList = new ArrayList<>();
+
+    public void addUserMission(UserMission userMission){
+        this.userMissionList.add(userMission);
+        userMission.setUser(this);
+    }
 }

@@ -44,12 +44,12 @@ public class QMission extends EntityPathBase<Mission> {
 
     public final QRestaurant restaurant;
 
-    public final NumberPath<Double> rewardRatio = createNumber("rewardRatio", Double.class);
+    public final NumberPath<java.math.BigDecimal> rewardRatio = createNumber("rewardRatio", java.math.BigDecimal.class);
 
     //inherited
     public final EnumPath<umc.study.domain.enums.Status> status = _super.status;
 
-    public final NumberPath<Integer> successAmount = createNumber("successAmount", Integer.class);
+    public final NumberPath<java.math.BigDecimal> successAmount = createNumber("successAmount", java.math.BigDecimal.class);
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> updatedAt = _super.updatedAt;
