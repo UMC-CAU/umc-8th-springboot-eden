@@ -7,6 +7,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
@@ -116,4 +117,23 @@ public class ExceptionAdvice extends ResponseEntityExceptionHandler {
                 request
         );
     }
+
+    @Override
+    public ResponseEntity<Object> handleHttpMessageNotReadable(
+            HttpMessageNotReadableException e,
+            HttpHeaders headers,
+            HttpStatusCode status,
+            WebRequest request) {
+
+        return handleExceptionInternalFalse(
+                e,
+                ErrorStatus._BAD_REQUEST,
+                headers,
+                HttpStatus.BAD_REQUEST,
+                request,
+                "요청 형식(JSON)이 잘못되었습니다."
+        );
+    }
+
+
 }
