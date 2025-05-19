@@ -1,5 +1,6 @@
 package umc.study.web.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import umc.study.apiPayload.ApiResponse;
@@ -19,7 +20,7 @@ public class ReviewRestController {
     @PostMapping("/{restaurantId}/review")
     public ApiResponse<ReviewResponseDTO.ReviewRestaurantResultDTO> reviewRestaurant(
             @PathVariable Long restaurantId,
-            @RequestBody ReviewRequestDTO.ReviewRestaurantDTO request) {
+            @RequestBody @Valid ReviewRequestDTO.ReviewRestaurantDTO request) {
 
         Review review = reviewCommandService.reviewRestaurant(restaurantId, request);
 
