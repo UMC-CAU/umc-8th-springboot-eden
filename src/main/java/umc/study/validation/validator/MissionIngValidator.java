@@ -5,9 +5,11 @@ import jakarta.validation.ConstraintValidatorContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import umc.study.apiPayload.code.status.ErrorStatus;
-import umc.study.service.MissionService.MissionQueryService;
+import umc.study.domain.enums.MissionStatus;
 import umc.study.service.UserMissionService.UserMissionQueryService;
 import umc.study.validation.annotation.IngMission;
+
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -23,7 +25,10 @@ public class MissionIngValidator implements ConstraintValidator<IngMission, Long
     @Override
     public boolean isValid(Long missionId, ConstraintValidatorContext context) {
 
-        boolean isOngoing = userMissionQueryService.findOngoingById(1L, missionId).isPresent();   // 유저 정보는 하드 코딩
+        boolean isOngoing = userMissionQueryService.findOngoingById(1L, missionId)  // 유저 정보는 하드 코딩
+                .map(userMission -> userMission.getMissionStatus().equals(MissionStatus.ONGOING))
+                .orElse(false);
+
 
         if (isOngoing) {
             context.disableDefaultConstraintViolation();
