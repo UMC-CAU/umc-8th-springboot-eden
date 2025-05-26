@@ -74,7 +74,7 @@ public class MissionRepositoryImpl implements MissionRepositoryCustom {
     }
 
     @Override
-    public List<Tuple> getInfoForHome(Long userId, String region, String cursorValue) {
+    public List<Tuple> getInfoForHome(Long userId, Long regionId, String cursorValue) {
         StringTemplate cursorExpr = Expressions.stringTemplate(
                 "CONCAT({0}, LPAD({1}, 10, '0'))", m.deadLine, m.id
         );
@@ -84,12 +84,12 @@ public class MissionRepositoryImpl implements MissionRepositoryCustom {
                 .from(m)
                 .leftJoin(um).on(
                         um.mission.eq(m),
-                        um.user.id.eq(1L)
+                        um.user.id.eq(userId)
                 )
                 .join(m.restaurant, r)
                 .where(
                         (um.user.id.isNull().or(um.missionStatus.in(MissionStatus.SUCCEEDED, MissionStatus.FAILED))),
-                        r.region.eq(region),
+                        r.region.id.eq(regionId),
                         cursorExpr.gt(cursorValue)
                 )
                 .orderBy(m.deadLine.asc(), m.id.asc())

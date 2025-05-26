@@ -26,9 +26,6 @@ public class Restaurant extends BaseEntity {
     @Column(columnDefinition = "TEXT")
     private String address;
 
-    @Column(columnDefinition = "VARCHAR(20)")
-    private String region;
-
     private Boolean isOpen;
 
     private double rating;
@@ -42,6 +39,11 @@ public class Restaurant extends BaseEntity {
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
     private List<Mission> missionList = new ArrayList<>();
 
+    @Setter
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "region_id")
+    private Region region;
+
     @Override
     public String toString() {
         return "Store{" +
@@ -49,7 +51,14 @@ public class Restaurant extends BaseEntity {
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", rating=" + rating +
-                ", region=" + (region != null ? region : "N/A") + // region의 이름 출력
+                ", region=" + (region != null ? region.getName() : "N/A") + // region의 이름 출력
                 '}';
     }
+
+    // 연관관계 한 번에 처리
+    public void addMission(Mission mission) {
+        this.missionList.add(mission);
+        mission.setRestaurant(this);
+    }
+
 }
