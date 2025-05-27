@@ -19,7 +19,7 @@ public class ReviewResponseDTO {
 
         Long reviewId;
 
-        Integer rating;
+        double rating;
 
         String content;
 
@@ -47,7 +47,7 @@ public class ReviewResponseDTO {
     @AllArgsConstructor
     public static class ReviewPreViewDTO {
         String ownerNickname;
-        Float score;
+        double score;
         String body;
         LocalDate createdAt;
     }
