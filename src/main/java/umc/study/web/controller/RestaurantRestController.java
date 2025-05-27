@@ -11,13 +11,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import umc.study.apiPayload.ApiResponse;
 import umc.study.converter.RestaurantConverter;
+import umc.study.converter.ReviewConverter;
 import umc.study.domain.Restaurant;
+import umc.study.domain.Review;
 import umc.study.service.RestaurantService.RestaurantCommandService;
 import umc.study.service.RestaurantService.RestaurantQueryService;
 import umc.study.validation.annotation.ExistRestaurants;
 import umc.study.web.dto.RestaurantRequestDTO;
 import umc.study.web.dto.RestaurantResponseDTO;
 import umc.study.web.dto.ReviewResponseDTO;
+import org.springframework.data.domain.Page;
 
 @RestController
 @RequiredArgsConstructor
@@ -49,8 +52,9 @@ public class RestaurantRestController {
             @Parameter(name = "storeId", description = "가게의 아이디, path variable 입니다!")
     })
     public ApiResponse<ReviewResponseDTO.ReviewPreViewListDTO> getReviewList(@ExistRestaurants @PathVariable(name = "storeId") Long storeId, @RequestParam(name = "page") Integer page){
-        restaurantQueryService.getReviewList(storeId,page);
+        Page<Review> reviewList = restaurantQueryService.getReviewList(storeId,page);
 
-        return null;
+        return ApiResponse.onSuccess(ReviewConverter.reviewPreViewListDTO(reviewList));
+
     }
 }
