@@ -51,4 +51,39 @@ public class ReviewResponseDTO {
         String body;
         LocalDate createdAt;
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class myReviewDTO {
+        String restaurantName;
+
+        double rating;
+
+        String content;
+
+        LocalDateTime createdAt;
+
+        LocalDateTime updatedAt;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class myReviewListDTO {
+        List<myReviewDTO> reviewList;
+
+        Integer listSize;
+
+        Integer totalPage;
+
+        Long totalElements;
+
+        Boolean isFirst;
+
+        Boolean isLast;
+    }
+
 }
