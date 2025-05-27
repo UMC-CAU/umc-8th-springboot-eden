@@ -29,7 +29,7 @@ public class Review extends BaseEntity {
     private Restaurant restaurant;
 
     @Column(nullable = false)
-    private Integer rating;
+    private double rating;
 
     @Column(columnDefinition = "TEXT")
     private String content;
