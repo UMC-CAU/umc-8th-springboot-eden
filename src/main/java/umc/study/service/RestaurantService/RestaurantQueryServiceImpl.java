@@ -1,9 +1,11 @@
 package umc.study.service.RestaurantService;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.study.domain.Restaurant;
+import umc.study.domain.Review;
 import umc.study.repository.RestaurantRepository.RestaurantRepository;
 
 import java.util.List;
@@ -28,5 +30,12 @@ public class RestaurantQueryServiceImpl implements RestaurantQueryService{
         filteredStores.forEach(store -> System.out.println("Store: " + store));
 
         return filteredStores;
+    }
+
+    @Override
+    public Page<Review> getReviewList(Long StoreId, Integer page) {
+
+
+        return null;
     }
 }
