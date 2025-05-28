@@ -9,5 +9,5 @@ import java.util.Optional;
 public interface MissionQueryService {
 
     Optional<Mission> findById(Long id);
-    Page<Mission> getByRestaurantByPage(Restaurant restaurant, int number, int size);
+    Page<Mission> getByRestaurantByPage(Long restaurantId, int number, int size);
 }

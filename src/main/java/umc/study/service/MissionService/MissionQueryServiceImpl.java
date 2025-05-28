@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import umc.study.domain.Mission;
 import umc.study.domain.Restaurant;
 import umc.study.repository.MissionRepository.MissionRepository;
+import umc.study.repository.RestaurantRepository.RestaurantRepository;
 
 import java.util.Optional;
 
@@ -18,13 +19,17 @@ public class MissionQueryServiceImpl implements MissionQueryService {
 
     private final MissionRepository missionRepository;
 
+    private final RestaurantRepository restaurantRepository;
+
     @Override
     public Optional<Mission> findById(Long id) {
         return missionRepository.findById(id);
     }
 
     @Override
-    public Page<Mission> getByRestaurantByPage(Restaurant restaurant, int number, int size) {
+    public Page<Mission> getByRestaurantByPage(Long restaurantId, int number, int size) {
+
+        Restaurant restaurant = restaurantRepository.findById(restaurantId).orElse(null);
 
         return missionRepository.findAllByRestaurant(restaurant, PageRequest.of(number, size));
     }
