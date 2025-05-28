@@ -2,6 +2,7 @@ package umc.study.converter;
 
 import org.springframework.data.domain.Page;
 import umc.study.domain.Mission;
+import umc.study.domain.mapping.UserMission;
 import umc.study.web.dto.MissionRequestDTO;
 import umc.study.web.dto.MissionResponseDTO;
 import umc.study.web.dto.ReviewResponseDTO;
@@ -58,7 +59,10 @@ public class MissionConverter {
                 .build();
     }
 
-    public static MissionResponseDTO.myMissionDTO toMyMissionDTO(Mission mission){
+    public static MissionResponseDTO.myMissionDTO toMyMissionDTO(UserMission userMission){
+
+        Mission mission = userMission.getMission();
+
         return MissionResponseDTO.myMissionDTO.builder()
                 .restaurantName(mission.getRestaurant().getName())
                 .restaurantCategory(mission.getRestaurant().getCategory())
@@ -66,12 +70,12 @@ public class MissionConverter {
                 .deadLine(mission.getDeadLine())
                 .successAmount(mission.getSuccessAmount())
                 .rewardAmount(mission.getSuccessAmount().multiply(mission.getRewardRatio()))
-                .missionStatus(mission.getMissionStatus())
+                .missionStatus(userMission.getMissionStatus())
                 .updatedAt(mission.getUpdatedAt())
                 .build();
     }
 
-    public static MissionResponseDTO.myMissionListDTO toMyMissionListDTO(Page<Mission> missionList){
+    public static MissionResponseDTO.myMissionListDTO toMyMissionListDTO(Page<UserMission> missionList){
 
         List<MissionResponseDTO.myMissionDTO> myMissionDTOList = missionList.stream()
                 .map(MissionConverter::toMyMissionDTO).collect(Collectors.toList());
