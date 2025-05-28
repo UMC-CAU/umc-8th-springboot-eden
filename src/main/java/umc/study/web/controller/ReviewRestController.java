@@ -14,6 +14,7 @@ import umc.study.converter.ReviewConverter;
 import umc.study.domain.Review;
 import umc.study.service.ReviewService.ReviewCommandService;
 import umc.study.service.ReviewService.ReviewQueryService;
+import umc.study.validation.annotation.ExistPage;
 import umc.study.validation.annotation.ExistRestaurants;
 import umc.study.web.dto.ReviewRequestDTO;
 import umc.study.web.dto.ReviewResponseDTO;
@@ -47,7 +48,7 @@ public class ReviewRestController {
             @Parameter(name = "pageNumber", description = "페이지 넘버, query string 입니다. 1부터 시작입니다.")
     })
     public ApiResponse<ReviewResponseDTO.myReviewListDTO> getMyReviews(
-            @RequestParam(name = "pageNumber", defaultValue = "1") Integer pageNumber
+            @ExistPage @RequestParam(name = "pageNumber", defaultValue = "1") Integer pageNumber
     ){
         Page<Review> reviewList = reviewQueryService.getReviewByPage(pageNumber-1, 10);
 
