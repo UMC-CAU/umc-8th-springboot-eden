@@ -10,4 +10,5 @@ public interface MissionQueryService {
 
     Optional<Mission> findById(Long id);
     Page<Mission> getByRestaurantByPage(Long restaurantId, int number, int size);
+    Page<Mission> getByUserByPage(Long userId, int number, int size);
 }
