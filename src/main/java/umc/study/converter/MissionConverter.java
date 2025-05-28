@@ -57,4 +57,32 @@ public class MissionConverter {
                 .totalElements(missionList.getTotalElements())
                 .build();
     }
+
+    public static MissionResponseDTO.myMissionDTO toMyMissionDTO(Mission mission){
+        return MissionResponseDTO.myMissionDTO.builder()
+                .restaurantName(mission.getRestaurant().getName())
+                .restaurantCategory(mission.getRestaurant().getCategory())
+                .info(mission.getInfo())
+                .deadLine(mission.getDeadLine())
+                .successAmount(mission.getSuccessAmount())
+                .rewardAmount(mission.getSuccessAmount().multiply(mission.getRewardRatio()))
+                .missionStatus(mission.getMissionStatus())
+                .updatedAt(mission.getUpdatedAt())
+                .build();
+    }
+
+    public static MissionResponseDTO.myMissionListDTO toMyMissionListDTO(Page<Mission> missionList){
+
+        List<MissionResponseDTO.myMissionDTO> myMissionDTOList = missionList.stream()
+                .map(MissionConverter::toMyMissionDTO).collect(Collectors.toList());
+
+        return MissionResponseDTO.myMissionListDTO.builder()
+                .missionList(myMissionDTOList)
+                .isFirst(missionList.isFirst())
+                .isLast(missionList.isLast())
+                .listSize(myMissionDTOList.size())
+                .totalPage(missionList.getTotalPages())
+                .totalElements(missionList.getTotalElements())
+                .build();
+    }
 }
