@@ -49,7 +49,9 @@ public class UserMissionCommandServiceImpl implements UserMissionCommandService 
 
         UserMission userMission = userMissionRepository.findById(missionId).orElse(null);
 
-        userMission.setMissionStatus(MissionStatus.SUCCEEDED);
+        if(userMission.getMission().getVerifyCode().equals(verifyCode)){
+            userMission.setMissionStatus(MissionStatus.SUCCEEDED);
+        }
 
         return userMissionRepository.save(userMission);
     }
