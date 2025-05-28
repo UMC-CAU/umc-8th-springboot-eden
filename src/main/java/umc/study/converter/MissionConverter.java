@@ -1,10 +1,14 @@
 package umc.study.converter;
 
+import org.springframework.data.domain.Page;
 import umc.study.domain.Mission;
 import umc.study.web.dto.MissionRequestDTO;
 import umc.study.web.dto.MissionResponseDTO;
+import umc.study.web.dto.ReviewResponseDTO;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class MissionConverter {
 
@@ -27,6 +31,30 @@ public class MissionConverter {
                 .rewardAmount(rewardRatio)
                 .createAt(mission.getCreatedAt())
                 .updateAt(mission.getUpdatedAt())
+                .build();
+    }
+
+    public static MissionResponseDTO.storeMissionDTO toStoreMissionDTO(Mission mission){
+        return MissionResponseDTO.storeMissionDTO.builder()
+                .info(mission.getInfo())
+                .deadLine(mission.getDeadLine())
+                .successAmount(mission.getSuccessAmount())
+                .rewardAmount(mission.getSuccessAmount().multiply(mission.getRewardRatio()))
+                .build();
+    }
+
+    public static MissionResponseDTO.storeMissionListDTO toStoreMissionListDTO(Page<Mission> missionList){
+
+        List<MissionResponseDTO.storeMissionDTO> storeMissionDTOList = missionList.stream()
+                .map(MissionConverter::toStoreMissionDTO).collect(Collectors.toList());
+
+        return MissionResponseDTO.storeMissionListDTO.builder()
+                .missionList(storeMissionDTOList)
+                .isFirst(missionList.isFirst())
+                .isLast(missionList.isLast())
+                .listSize(storeMissionDTOList.size())
+                .totalPage(missionList.getTotalPages())
+                .totalElements(missionList.getTotalElements())
                 .build();
     }
 }

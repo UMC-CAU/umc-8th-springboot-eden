@@ -49,7 +49,7 @@ public class MissionResponseDTO {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class storeMissionListDTO {
-        List<storeMissionDTO> reviewList;
+        List<storeMissionDTO> missionList;
 
         Integer listSize;
 
