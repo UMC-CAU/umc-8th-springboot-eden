@@ -3,6 +3,7 @@ package umc.study.service.UserMissionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import umc.study.converter.MissionConverter;
+import umc.study.converter.UserMissionConverter;
 import umc.study.domain.Mission;
 import umc.study.domain.User;
 import umc.study.domain.enums.MissionStatus;
@@ -41,5 +42,17 @@ public class UserMissionCommandServiceImpl implements UserMissionCommandService 
         selectedMission.addUserMission(newUserMission);     // 미션과 유저미션 1:다 연결
 
         return userMissionRepository.save(newUserMission);
+    }
+
+    @Override
+    public UserMission completeMission(Long missionId, String verifyCode) {
+
+        UserMission userMission = userMissionRepository.findById(missionId).orElse(null);
+
+        if(userMission.getMission().getVerifyCode().equals(verifyCode)){
+            userMission.setMissionStatus(MissionStatus.SUCCEEDED);
+        }
+
+        return userMissionRepository.save(userMission);
     }
 }

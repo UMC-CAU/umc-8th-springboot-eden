@@ -5,24 +5,23 @@ import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.core.types.dsl.StringTemplate;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import umc.study.domain.Mission;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Repository;
 import umc.study.domain.QMission;
 import umc.study.domain.QRestaurant;
 import umc.study.domain.enums.MissionStatus;
-import umc.study.domain.enums.ProgressStatus;
 import umc.study.domain.mapping.QUserMission;
 
 import java.util.List;
 
+@Repository
+@RequiredArgsConstructor
 public class MissionRepositoryImpl implements MissionRepositoryCustom {
     private final JPAQueryFactory jpaQueryFactory;
     private final QMission m = QMission.mission;
     private final QRestaurant r = QRestaurant.restaurant;
     private final QUserMission um = QUserMission.userMission;
-
-    public MissionRepositoryImpl(JPAQueryFactory jpaQueryFactory) {
-        this.jpaQueryFactory = jpaQueryFactory;
-    }
 
     @Override
     public List<Tuple> getMyOngoingMissions(Long userId, String cursorValue) {
@@ -96,4 +95,5 @@ public class MissionRepositoryImpl implements MissionRepositoryCustom {
                 .limit(5)
                 .fetch();
     }
+
 }

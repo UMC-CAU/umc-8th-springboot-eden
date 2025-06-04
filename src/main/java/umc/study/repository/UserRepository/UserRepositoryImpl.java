@@ -2,17 +2,17 @@ package umc.study.repository.UserRepository;
 
 import com.querydsl.core.Tuple;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
 import umc.study.domain.QUser;
 
 import java.util.List;
 
+@Repository
+@RequiredArgsConstructor
 public class UserRepositoryImpl implements UserRepositoryCustom{
     private final JPAQueryFactory jpaQueryFactory;
     private final QUser u = QUser.user;
-
-    public UserRepositoryImpl(JPAQueryFactory jpaQueryFactory) {
-        this.jpaQueryFactory = jpaQueryFactory;
-    }
 
     @Override
     public List<Tuple> getMyPageInfo(Long userId) {
